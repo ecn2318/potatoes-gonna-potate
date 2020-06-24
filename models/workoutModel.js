@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+
+/*
 const workoutSchema = new Schema({
     day: {
         type: Date,
@@ -15,11 +17,28 @@ const workoutSchema = new Schema({
         reps: { type: Number },
         sets: { type: Number }
     }]
-}, {
-    versionKey: false // You should be aware of the outcome after set to false
+}); */
+
+// define subschema
+const subschema = new Schema({
+    type: { type: String },
+    name: { type: String },
+    duration: { type: Number },
+    weight: { type: Number },
+    reps: { type: Number },
+    sets: { type: Number }
+})
+
+const workoutSchema = new Schema({
+    day: {
+        type: Date,
+        default: Date.now
+    },
+    exercises: [subschema]
 });
 
 
-const workout = mongoose.model("workout", workoutSchema);
 
-module.exports = workout;
+const Workout = mongoose.model("Workout", workoutSchema);
+
+module.exports = Workout;

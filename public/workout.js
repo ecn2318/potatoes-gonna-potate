@@ -6,12 +6,22 @@ async function initWorkout() {
       .querySelector("a[href='/exercise?']")
       .setAttribute("href", `/exercise?id=${lastWorkout._id}`);
 
+    //let last = lastWorkout.exercises[lastWorkout.exercises.length - 1]
+
     const workoutSummary = {
       date: formatDate(lastWorkout.day),
-      totalDuration: lastWorkout.totalDuration,
+      // Total Duration = undefined --> fix
+      // reduce() goes through elements in array and adds - 
+      // a - original value (will accumulate) 
+      // b - incoming object, grab duration property - b.duration
+      // a=0 on load, increases as it passes through array
+      totalDuration: lastWorkout.exercises.reduce((a, b) => {
+        return a + b.duration;
+      }, 0),
       numExercises: lastWorkout.exercises.length,
       ...tallyExercises(lastWorkout.exercises)
     };
+    console.log(workoutSummary)
 
     renderWorkoutSummary(workoutSummary);
   } else {
