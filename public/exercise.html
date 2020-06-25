@@ -6,22 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <title>Fitness Tracker</title>
+  <title>ADD A WORKOUT</title>
 </head>
 
 <body>
   <nav>
-    <a href="/">Fitness Tracker</a>
+    <a href="/">RECENT</a>
+    <div class="divider"> // </div>
     <a href="/stats">Dashboard</a>
   </nav>
   <div class="wrapper">
     <header>
-      <h1>Fitness Tracker</h1>
+      <h1>Add an exercise</h1>
     </header>
+    <br>
     <div class="ui container exercise">
       <div class="ui raised card m-auto">
-        <h2>Add Your Exercise</h2>
+        <h2></h2>
         <form action="POST">
           <div class="workout-type">
             <label for="type">Exercise Type:</label>
@@ -33,7 +37,8 @@
           </div>
           <div class="cardio-form d-none">
             <div class="cardio-name">
-              <label for="cardio-name">Name:</label>
+              <label for="cardio-name">Exercise Name:</label>
+              <div class="divider"></div>
               <input type="text" name="cardio-name" id="cardio-name" placeholder="Running" />
             </div>
             <div class="distance">
@@ -68,10 +73,10 @@
             </div>
           </div>
           <div class="buttons">
-            <button disabled class="huge ui blue button complete">
-              Complete
+            <button disabled class="huge ui inverted olive button complete">
+              Complete Workout
             </button>
-            <button disabled class="huge ui positive button add-another">
+            <button disabled class="huge ui positive inverted grey button add-another">
               Add Exercise
             </button>
           </div>

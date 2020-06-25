@@ -58,23 +58,25 @@ function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
   const workoutKeyMap = {
-    date: "Date",
-    totalDuration: "Total Workout Duration",
-    numExercises: "Exercises Performed",
-    totalWeight: "Total Weight Lifted",
-    totalSets: "Total Sets Performed",
-    totalReps: "Total Reps Performed",
-    totalDistance: "Total Distance Covered"
+    date: "DATE",
+    totalDuration: "TOTAL WORKOUT DURATON (MIN)",
+    numExercises: "EXERCISES PERFORMED",
+    totalWeight: "TOTAL WEIGHT LIFTED (LBS)",
+    totalSets: "TOTAL SETS PERFORMED",
+    totalReps: "TOTAL REPS PERFORMED",
+    totalDistance: "TOTAL DISTANCE COVERED (MILES)"
   };
 
   Object.keys(summary).forEach(key => {
     const p = document.createElement("p");
     const strong = document.createElement("strong");
+    const line = document.createElement("br");
 
     strong.textContent = workoutKeyMap[key];
-    const textNode = document.createTextNode(`: ${summary[key]}`);
+    const textNode = document.createTextNode(`${summary[key]}`);
 
     p.appendChild(strong);
+    p.appendChild(line);
     p.appendChild(textNode);
 
     container.appendChild(p);

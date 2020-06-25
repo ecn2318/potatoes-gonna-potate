@@ -35,6 +35,7 @@ function generatePalette() {
 }
 function populateChart(data) {
   let durations = duration(data);
+  let distances = distance(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
@@ -58,7 +59,7 @@ function populateChart(data) {
       ],
       datasets: [
         {
-          label: "Workout Duration In Minutes",
+          label: "Overall Training: Workout Duration (minutes)",
           backgroundColor: "red",
           borderColor: "red",
           data: durations,
@@ -106,7 +107,7 @@ function populateChart(data) {
       ],
       datasets: [
         {
-          label: "Pounds",
+          label: "lbs",
           data: pounds,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
@@ -131,7 +132,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: "Pounds Lifted"
+        text: "Resistance Training: Total Weight Lifted"
       },
       scales: {
         yAxes: [
@@ -151,16 +152,17 @@ function populateChart(data) {
       labels: workouts,
       datasets: [
         {
-          label: "Excercises Performed",
+          label: "Cardio Training: Exercises Performed",
           backgroundColor: colors,
-          data: durations
+          // data: durations
+          data: distances
         }
       ]
     },
     options: {
       title: {
         display: true,
-        text: "Excercises Performed"
+        text: "Exercises Performed"
       }
     }
   });
@@ -171,7 +173,7 @@ function populateChart(data) {
       labels: workouts,
       datasets: [
         {
-          label: "Excercises Performed",
+          label: "Resistance Training: Exercises Performed",
           backgroundColor: colors,
           data: pounds
         }
@@ -180,7 +182,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: "Excercises Performed"
+        text: "Resistance Training: Exercises Performed"
       }
     }
   });
@@ -196,6 +198,18 @@ function duration(data) {
   });
 
   return durations;
+}
+
+function distance(data) {
+  let distances = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      distances.push(exercise.distance);
+    });
+  });
+
+  return distances;
 }
 
 function calculateTotalWeight(data) {

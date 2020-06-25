@@ -6,31 +6,46 @@
   padding: 0;
 }
 
+canvas {
+  font-family: 'Lato', sans-serif;
+}
+
 html,
 body,
 .wrapper {
   height: 100%;
+  background: #000;
+}
+
+.divider{
+  width:25px;
+  height:auto;
+  display:inline-block;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Bebas Neue', cursive;
 }
 
 nav {
-  background-color: #5793fd;
-  color: #ffffff;
-  height: 80px;
+  background-color: black;
+  color: #e7e700;
+  height: 100px;
   padding: 10px;
   line-height: 3;
-  font-size: 1.2rem;
+  font-size: 20px;
+  text-align: center;
 }
 
-a,
-a:hover,
-a:active,
-a:visited {
-  text-decoration: none;
-  color: inherit;
+a {
+  color: white;
+  font-size: 36px;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #e7e700;
+  color: white;
 }
 
 header {
@@ -38,21 +53,58 @@ header {
   padding-top: 80px;
   text-align: center;
   font-size: 1.5rem;
+  background: #000;
 }
 
 header h1 {
-  transform: skewX(-2deg);
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 100;
+  font-size: 68px;
+  color: #e7e700;
 }
+
+h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-weight: 100;
+  font-size: 68px;
+  color: #e7e700;
+}
+
+h2 {
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
+  font-size: 28px;
+  color: #e7e700;
+}
+
+p {
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
+  font-size: 36px;
+  color: white;
+}
+
+strong {
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+
 
 select {
   display: block;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  font-size: 1rem;
-  border-radius: 6px;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  border-radius: 3px;
   border: 1px solid #aaa;
   width: 100%;
+  opacity: 75%;
   padding: 10px;
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
     linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
@@ -71,7 +123,7 @@ select:hover {
 
 select:focus {
   border-color: #aaa;
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 1px 3px #e7e700;
   box-shadow: 0 0 0 3px -moz-mac-focusring;
   color: #222;
   outline: none;
@@ -87,16 +139,26 @@ input {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  font-size: 1rem;
-  border-radius: 6px;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  border-radius: 2px;
   border: 1px solid #aaa;
   width: 100%;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
+input:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px #e7e700;
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+
 .wrapper {
-  background-color: #f2f8ff;
+  background: #000;
   padding-bottom: 100px;
 }
 
@@ -104,6 +166,8 @@ input {
 .m-auto {
   margin: 0 auto;
   width: 500px;
+  background: #000;
+  color: white;
 }
 
 form .workout-type,
@@ -116,6 +180,7 @@ form .resistance-form div {
 form label {
   width: 150px;
   margin-top: 0.7rem;
+  font-size: 24px;
 }
 
 form > button {
@@ -141,26 +206,29 @@ form::after {
 .exercise .buttons {
   margin-top: 20px;
   display: flex;
+
 }
 
 .exercise .buttons button {
   width: 100%;
+
 }
 
 button {
   display: block;
   border: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 24px;
   border-radius: 6px;
   border: 1px solid #aaa;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
-
+/*
 #toast {
   border-radius: 4px;
   border-width: 1px;
+  border-color: #e7e700;
   font-size: 13px;
   line-height: 19.5px;
   margin: 0px 0px 16px;
@@ -173,21 +241,24 @@ button {
   right: -320px;
   opacity: 0;
   transition: all 0.5s;
+  font-family: 'Bebas Neue', cursive;
 }
 
 #toast.success {
   opacity: 1;
   right: 10px;
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
+  background-color: none;
+  color: olive;
   transition: all 1.2s;
-}
+  font-family: 'Bebas Neue', cursive;
+}*/
 
 .workout-type,
 form .cardio-form div,
 form .resistance-form div {
   display: flex;
   margin-top: 30px;
+  font-family: 'Bebas Neue', cursive;
 }
 
 form label {
@@ -219,8 +290,9 @@ button {
   border: 1px solid #aaa;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  font-family: 'Bebas Neue', cursive;
 }
-
+/*
 #toast {
   border-radius: 4px;
   border-width: 1px;
@@ -241,9 +313,9 @@ button {
 #toast.success {
   right: 10px;
   background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
+  color: grey;
   transition: all 0.5s;
-}
+}*/
 .workout-type,
 form .cardio-form div,
 form .resistance-form div {
@@ -280,12 +352,14 @@ button {
   border: 1px solid #aaa;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  font-family: 'Bebas Neue', cursive;
 }
 
 #toast {
   border-radius: 4px;
-  border-width: 1px;
-  font-size: 13px;
+  border-width: 2px;
+  border-color: #e7e700;
+  font-size: 18px;
   line-height: 19.5px;
   margin: 0px 0px 16px;
   padding: 12px 59.5px 12px 20px;
@@ -295,16 +369,19 @@ button {
   position: fixed;
   top: 10px;
   right: -320px;
+  font-family: 'Bebas Neue', cursive;
 }
 
 #toast.success {
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
+  background-color: none;
+  color: #e7e700;
+  font-size: 24px;
   animation-name: toast;
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-fill-mode: forwards;
   animation-delay: 0.2s;
   animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  font-family: 'Bebas Neue', cursive;
 }
 
 .d-none {
@@ -320,13 +397,16 @@ button {
   border: 1px solid #aaa;
   padding: 10px;
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  font-family: 'Bebas Neue', cursive;
 }
 
 form > button {
   margin: 5px;
   margin-top: 20px;
+  font-family: 'Bebas Neue', cursive;
 }
 
+/*
 #toast {
   border-radius: 4px;
   border-width: 1px;
@@ -341,7 +421,10 @@ form > button {
   top: 10px;
   right: -320px;
   opacity: 0;
-}
+  font-family: 'Bebas Neue', cursive;
+  background-color: none;
+  color: olive;
+}*/
 
 .d-flex {
   display: flex;
@@ -352,15 +435,18 @@ form > button {
 .col {
   flex: 1;
 }
-
+/*
 #toast.success {
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
-}
+  color:whitesmoke;
+  font-family: 'Bebas Neue', cursive;
+  border-color: yellowgreen;
+}*/
 
 .prev-workout h3 {
   font-size: 2rem;
   width: 100%;
+  font-family: 'Bebas Neue', cursive;
+
 }
 
 .prev-workout p {
@@ -401,6 +487,7 @@ form > button {
 .buttons .ui.button {
   margin: 0;
   width: 50%;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .ui.card h2 {
@@ -411,12 +498,17 @@ form > button {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
 }
 
 .buttons .ui.button:nth-child(2) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 24px;
+
 }
 
 .workout-type,
@@ -428,7 +520,7 @@ form > button {
 @keyframes toast {
   50% {
     opacity: 1;
-    right: 10px;
+    right: 50px;
   }
   100% {
     opacity: 0;
