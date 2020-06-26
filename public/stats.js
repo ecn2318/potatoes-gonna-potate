@@ -162,7 +162,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: "Exercises Performed"
+        text: "Cardio Training: Exercises Performed"
       }
     }
   });

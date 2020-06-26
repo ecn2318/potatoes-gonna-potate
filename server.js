@@ -15,7 +15,9 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
     useNewUrlParser: true,
-    useFindAndModify: false //see deprecation warnings
+    useCreateIndex: true,
+    useFindAndModify: false, //see deprecation warnings
+    family: 4 // Use IPv4, skip trying IPv6
 });
 
 app.get("/exercise", (req, res) => {
