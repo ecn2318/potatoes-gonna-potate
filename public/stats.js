@@ -38,6 +38,7 @@ function populateChart(data) {
   let distances = distance(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
+  let dates = data.map(e => e.day)
   const colors = generatePalette();
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -48,18 +49,10 @@ function populateChart(data) {
   let lineChart = new Chart(line, {
     type: "line",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
+      labels: dates,
       datasets: [
         {
-          label: "Overall Training: Workout Duration (minutes)",
+          label: "Duration (minutes)",
           backgroundColor: "red",
           borderColor: "red",
           data: durations,

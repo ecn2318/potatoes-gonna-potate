@@ -58,13 +58,35 @@ function renderWorkoutSummary(summary) {
   const container = document.querySelector(".workout-stats");
 
   const workoutKeyMap = {
-    date: "DATE",
-    totalDuration: "TOTAL WORKOUT DURATON (MIN)",
-    numExercises: "EXERCISES PERFORMED",
-    totalWeight: "TOTAL WEIGHT LIFTED (LBS)",
-    totalSets: "TOTAL SETS PERFORMED",
-    totalReps: "TOTAL REPS PERFORMED",
-    totalDistance: "TOTAL DISTANCE COVERED (MILES)"
+    date: {
+      text: "DATE",
+      measure: ""
+    },
+    totalDuration: {
+      text: "TOTAL WORKOUT DURATON (MIN)",
+      measure: "minutes"
+    },
+    numExercises: {
+      text: "EXERCISES PERFORMED",
+      measure: ""
+    },
+    totalWeight: {
+      text: "TOTAL WEIGHT LIFTED (LBS)",
+      measure: "lbs"
+    },
+    totalSets: {
+      text: "TOTAL SETS PERFORMED",
+      measure: ""
+    },
+    totalReps: {
+      text: "TOTAL REPS",
+      measure: ""
+    },
+    totalDistance:
+    {
+      text: "TOTAL DISTANCE COVERED (MILES)",
+      measure: "miles"
+    }
   };
 
   Object.keys(summary).forEach(key => {
@@ -72,8 +94,8 @@ function renderWorkoutSummary(summary) {
     const strong = document.createElement("strong");
     const line = document.createElement("br");
 
-    strong.textContent = workoutKeyMap[key];
-    const textNode = document.createTextNode(`${summary[key]}`);
+    strong.textContent = workoutKeyMap[key].text;
+    const textNode = document.createTextNode(`${summary[key]} ${workoutKeyMap[key].measure}`);
 
     p.appendChild(strong);
     p.appendChild(line);
