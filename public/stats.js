@@ -38,8 +38,10 @@ function populateChart(data) {
   let pounds = calculateTotalWeight(data);
   let c_workouts = cWorkoutNames(data);
   let r_workouts = rWorkoutNames(data);
+  let workouts = workoutNames(data);
   let dates = data.map(e => formatDate(e.day)) //grab date
   //day: "2020-06-15T04:57:05.346Z"
+
   const colors = generatePalette();
 
   let line = document.querySelector("#canvas").getContext("2d");
@@ -75,14 +77,14 @@ function populateChart(data) {
       },
       scales: {
         xAxes: [{
-          ticks: {
+          /*ticks: {
             min: 0,
             max: 4,
-          }
-          /*display: true,
+          }*/
+          display: true,
           scaleLabel: {
             display: true
-          }*/
+          }
           /* type: "time",
            time: {
              min: start,
@@ -150,10 +152,9 @@ function populateChart(data) {
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
-      labels: c_workouts,
+      labels: workouts,
       datasets: [
         {
-          label: "miles",
           backgroundColor: colors,
           // data: durations
           data: distances
@@ -171,7 +172,7 @@ function populateChart(data) {
   let donutChart = new Chart(pie2, {
     type: "doughnut",
     data: {
-      labels: r_workouts,
+      labels: workouts,
       datasets: [
         {
           label: "Resistance Training: Exercises Performed",
@@ -225,6 +226,18 @@ function calculateTotalWeight(data) {
   return total;
 }
 
+function workoutNames(data) {
+  let workouts = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      workouts.push(exercise.name);
+    });
+  });
+
+  return workouts;
+}
+
 function cWorkoutNames(data) {
   let cWorkouts = [];
 
@@ -252,7 +265,6 @@ function rWorkoutNames(data) {
   return rWorkouts;
 }
 
-
 function formatDate(date) {
   const options = {
     weekday: "long"
@@ -260,6 +272,7 @@ function formatDate(date) {
 
   return new Date(date).toDateString(options);
 }
+
 
 function addData(chart, label, data) {
   chart.data.labels.push(label);
@@ -276,3 +289,4 @@ function removeData(chart) {
   });
   chart.update();
 }
+
