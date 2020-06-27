@@ -36,8 +36,8 @@ function populateChart(data) {
   let durations = duration(data);
   let distances = distance(data);
   let pounds = calculateTotalWeight(data);
-  let c_workouts = cWorkoutNames(data);
-  let r_workouts = rWorkoutNames(data);
+  /*let c_workouts = cWorkoutNames(data);
+  let r_workouts = rWorkoutNames(data);*/
   let workouts = workoutNames(data);
   let dates = data.map(e => formatDate(e.day)) //grab date
   //day: "2020-06-15T04:57:05.346Z"
