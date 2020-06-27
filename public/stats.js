@@ -8,7 +8,6 @@ fetch("/api/workouts/range")
     populateChart(data);
   });
 
-
 API.getWorkoutsInRange()
 
 function generatePalette() {
@@ -37,14 +36,23 @@ function populateChart(data) {
   let durations = duration(data);
   let distances = distance(data);
   let pounds = calculateTotalWeight(data);
-  let workouts = workoutNames(data);
-  let dates = data.map(e => e.day)
+  let c_workouts = cWorkoutNames(data);
+  let r_workouts = rWorkoutNames(data);
+  let dates = data.map(e => formatDate(e.day)) //grab date
+  //day: "2020-06-15T04:57:05.346Z"
   const colors = generatePalette();
 
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
+
+  /*
+    let start = new Date(),
+      end = new Date();
+  
+    start.setDate(start.getDate() - 7); // set to 'now' minus 7 days.
+    start.setHours(0, 0, 0, 0); */
 
   let lineChart = new Chart(line, {
     type: "line",
@@ -66,14 +74,21 @@ function populateChart(data) {
         display: true
       },
       scales: {
-        xAxes: [
-          {
-            display: true,
-            scaleLabel: {
-              display: true
-            }
+        xAxes: [{
+          ticks: {
+            min: 0,
+            max: 4,
           }
-        ],
+          /*display: true,
+          scaleLabel: {
+            display: true
+          }*/
+          /* type: "time",
+           time: {
+             min: start,
+             max: end,
+           }*/
+        }],
         yAxes: [
           {
             display: true,
@@ -89,15 +104,7 @@ function populateChart(data) {
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
-      labels: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
+      labels: dates,
       datasets: [
         {
           label: "lbs",
@@ -139,13 +146,14 @@ function populateChart(data) {
     }
   });
 
+
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
-      labels: workouts,
+      labels: c_workouts,
       datasets: [
         {
-          label: "Cardio Training: Exercises Performed",
+          label: "miles",
           backgroundColor: colors,
           // data: durations
           data: distances
@@ -155,7 +163,7 @@ function populateChart(data) {
     options: {
       title: {
         display: true,
-        text: "Cardio Training: Exercises Performed"
+        text: "Cardio Training: Exercises Performed",
       }
     }
   });
@@ -163,7 +171,7 @@ function populateChart(data) {
   let donutChart = new Chart(pie2, {
     type: "doughnut",
     data: {
-      labels: workouts,
+      labels: r_workouts,
       datasets: [
         {
           label: "Resistance Training: Exercises Performed",
@@ -217,14 +225,54 @@ function calculateTotalWeight(data) {
   return total;
 }
 
-function workoutNames(data) {
-  let workouts = [];
+function cWorkoutNames(data) {
+  let cWorkouts = [];
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      workouts.push(exercise.name);
+      if (exercise.type === "cardio") {
+        cWorkouts.push(exercise.name);
+      }
     });
   });
 
-  return workouts;
+  return cWorkouts;
+}
+
+function rWorkoutNames(data) {
+  let rWorkouts = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      if (exercise.type === "resistance") {
+        rWorkouts.push(exercise.name);
+      }
+    })
+  })
+  return rWorkouts;
+}
+
+
+function formatDate(date) {
+  const options = {
+    weekday: "long"
+  };
+
+  return new Date(date).toDateString(options);
+}
+
+function addData(chart, label, data) {
+  chart.data.labels.push(label);
+  chart.data.datasets.forEach((dataset) => {
+    dataset.data.push(data);
+  });
+  chart.update();
+}
+
+function removeData(chart) {
+  chart.data.labels.pop();
+  chart.data.datasets.forEach((dataset) => {
+    dataset.data.pop();
+  });
+  chart.update();
 }
